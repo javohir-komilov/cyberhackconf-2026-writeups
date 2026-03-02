@@ -1,0 +1,36 @@
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+  web:
+    build: .
+    user: web
+    command: ["/usr/local/bin/start-web.sh"]
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    ports:
+      - "5000:5000"
+    volumes:
+      - challenge_data:/app/data
+      - challenge_exports:/app/public/exports
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  worker:
+    build: .
+    user: worker
+    command: ["/usr/local/bin/start-worker.sh"]
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    volumes:
+      - challenge_data:/app/data
+      - challenge_exports:/app/public/exports
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+volumes:
+  challenge_data:
+  challenge_exports:

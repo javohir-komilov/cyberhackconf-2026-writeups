@@ -1,0 +1,8 @@
+=== Research Notes ===
+Date: 2019-03-17
+
+Evidence fragmented across 4 files.
+Assembly sequence encoded in metadata.
+Activation key in dump.bin (base64).
+
+- Prof. Voronov

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-num">{{ total_apps }}</div>
+    <div class="stat-label">Total Applications</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">{{ pending }}</div>
+    <div class="stat-label">Pending Review</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">{{ pending_reports }}</div>
+    <div class="stat-label">Pending Security Reports</div>
+  </div>
+</div>
+<div class="admin-links">
+  <a class="btn btn-secondary" href="{{ url_for('admin.tickets') }}">Browse Applications</a>
+  <a class="btn btn-secondary" href="{{ url_for('admin.reports') }}">Security Reports</a>
+</div>
+{% endblock %}

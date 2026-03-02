@@ -1,0 +1,16 @@
+Vazifa
+
+Ikkinchi jahon urushi davriga oid arxivlarni tahlil qilish jarayonida noma’lum radio uzatma aniqlandi.
+
+Xabar Enigma I shifrlash mashinasi yordamida shifrlangan. Razvedka mutaxassislari xabar ichida quyidagi matn bo‘lagi mavjud bo‘lishi mumkinligini aniqlashdi:
+
+ENEMYMOVE
+
+Sizning vazifangiz — shifrlangan xabarni tiklash va uning ichida yashirilgan flagni topish.
+
+Shifrlangan tekst: 
+VUZRGYQAJZUGDJMCESYEFGPPBASUVUSYUEZYCVNBGINVXLSWKHBALWXGYHVCPXCRXYJVENSGMJVHVUFUKKQXLPULTRWARKOHBOMCGJBWCHST
+
+Flag formati: CHC{*******_******_******_*******}
+
+hint: plugboard ishlatilyapti

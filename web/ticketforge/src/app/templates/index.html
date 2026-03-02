@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block title %}TicketForge Dashboard{% endblock %}
+{% block content %}
+<section class="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+  <div class="space-y-6">
+    <div class="rounded-2xl border border-cyan-300/25 bg-slate-900/65 p-6 shadow-neon">
+      <h1 class="font-display text-3xl font-bold text-slate-100">Helpdesk Operations Console</h1>
+      <p class="mt-2 max-w-2xl text-sm text-slate-300">Search tickets, maintain weekly report templates, and trigger packaging workflows for downstream teams.</p>
+
+      <form id="searchForm" class="mt-5 flex flex-col gap-3 sm:flex-row">
+        <input
+          id="searchInput"
+          name="q"
+          type="text"
+          placeholder="Search title or snippet"
+          class="w-full rounded-xl border border-cyan-300/30 bg-slate-950/70 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-400 focus:border-cyan-200 focus:outline-none"
+        />
+        <button
+          type="submit"
+          class="rounded-xl border border-cyan-300/50 bg-cyan-400/15 px-5 py-3 text-sm font-semibold text-cyan-100 hover:bg-cyan-400/25"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+
+    <div class="rounded-2xl border border-cyan-300/20 bg-slate-900/55 p-6">
+      <div class="mb-4 flex items-center justify-between">
+        <h2 class="font-display text-xl font-semibold">Recent Tickets</h2>
+        <span id="resultsCount" class="text-xs text-slate-400">{{ tickets|length }} loaded</span>
+      </div>
+      <div id="results" class="space-y-3">
+        {% for ticket in tickets %}
+          <article class="rounded-xl border border-slate-700/70 bg-slate-950/65 p-4">
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="text-sm font-semibold text-slate-100">#{{ ticket.id }} {{ ticket.title }}</h3>
+              <span class="rounded-full border border-cyan-300/30 px-2 py-0.5 text-xs text-cyan-200">{{ ticket.status }}</span>
+            </div>
+            <p class="mt-2 text-sm text-slate-300">{{ ticket.snippet }}</p>
+          </article>
+        {% endfor %}
+      </div>
+      <p id="searchError" class="mt-3 hidden text-sm text-rose-300"></p>
+    </div>
+  </div>
+
+  <aside class="space-y-6">
+    <div class="rounded-2xl border border-cyan-300/20 bg-slate-900/55 p-6">
+      <h2 class="font-display text-lg font-semibold">Live Metrics</h2>
+      <div class="mt-4 grid gap-3">
+        <div class="rounded-xl border border-cyan-300/25 bg-slate-950/60 p-3">
+          <p class="text-xs uppercase tracking-wide text-cyan-300">Open</p>
+          <p class="text-2xl font-bold">{{ metrics.open }}</p>
+        </div>
+        <div class="rounded-xl border border-cyan-300/25 bg-slate-950/60 p-3">
+          <p class="text-xs uppercase tracking-wide text-cyan-300">Triage</p>
+          <p class="text-2xl font-bold">{{ metrics.triage }}</p>
+        </div>
+        <div class="rounded-xl border border-cyan-300/25 bg-slate-950/60 p-3">
+          <p class="text-xs uppercase tracking-wide text-cyan-300">Closed</p>
+          <p class="text-2xl font-bold">{{ metrics.closed }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-2xl border border-cyan-300/20 bg-slate-900/55 p-6">
+      <h2 class="font-display text-lg font-semibold">Operations</h2>
+      <div class="mt-4 space-y-3 text-sm">
+        <a class="block rounded-xl border border-cyan-300/25 bg-slate-950/65 p-3 hover:border-cyan-200/50" href="/report/{{ report.id }}">Manage report template</a>
+        <a class="block rounded-xl border border-cyan-300/25 bg-slate-950/65 p-3 hover:border-cyan-200/50" href="/profile">Manage export profile</a>
+        <a class="block rounded-xl border border-cyan-300/25 bg-slate-950/65 p-3 hover:border-cyan-200/50" href="/exports">View export artifacts</a>
+      </div>
+    </div>
+
+    <div class="rounded-2xl border border-cyan-300/20 bg-slate-900/55 p-6">
+      <h2 class="font-display text-lg font-semibold">Latest Jobs</h2>
+      <ul class="mt-3 space-y-2 text-xs text-slate-300">
+        {% for job in jobs %}
+          <li class="rounded-lg border border-slate-700/60 bg-slate-950/55 px-3 py-2">
+            #{{ job.id }} · {{ job.status }}{% if job.output_file %} · {{ job.output_file }}{% endif %}
+          </li>
+        {% else %}
+          <li class="text-slate-400">No jobs queued yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </aside>
+</section>
+
+<script>
+  const form = document.getElementById("searchForm");
+  const input = document.getElementById("searchInput");
+  const results = document.getElementById("results");
+  const error = document.getElementById("searchError");
+  const count = document.getElementById("resultsCount");
+
+  function renderRows(rows) {
+    results.innerHTML = "";
+
+    if (!rows.length) {
+      results.innerHTML = '<p class="text-sm text-slate-400">No matching tickets.</p>';
+      count.textContent = "0 loaded";
+      return;
+    }
+
+    for (const row of rows) {
+      const card = document.createElement("article");
+      card.className = "rounded-xl border border-slate-700/70 bg-slate-950/65 p-4";
+      card.innerHTML = `
+        <div class="flex items-start justify-between gap-3">
+          <h3 class="text-sm font-semibold text-slate-100">#${row.id} ${row.title}</h3>
+          <span class="rounded-full border border-cyan-300/30 px-2 py-0.5 text-xs text-cyan-200">search</span>
+        </div>
+        <p class="mt-2 text-sm text-slate-300">${row.snippet}</p>
+      `;
+      results.appendChild(card);
+    }
+
+    count.textContent = `${rows.length} loaded`;
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    error.classList.add("hidden");
+    error.textContent = "";
+
+    const q = input.value || "";
+    const res = await fetch(`/search?q=${encodeURIComponent(q)}`);
+    const payload = await res.json();
+
+    if (!res.ok) {
+      error.textContent = payload.error || "Search failed";
+      error.classList.remove("hidden");
+      return;
+    }
+
+    renderRows(payload);
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaultPass — Xavfsiz Parol Menejeri</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link th:href="@{/static/css/main.css}" rel="stylesheet">
+</head>
+<body class="vp-landing">
+
+    <nav class="navbar navbar-expand-lg navbar-dark vp-navbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+                <i class="bi bi-shield-lock-fill vp-brand-icon"></i>
+                <span>VaultPass</span>
+            </a>
+            <div class="ms-auto d-flex gap-2">
+                <a href="/login" class="btn vp-btn-primary btn-sm px-4">
+                    <i class="bi bi-box-arrow-in-right me-1"></i>Kirish
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="vp-hero">
+        <div class="container text-center position-relative">
+            <div class="vp-hero-badge mb-4">
+                <i class="bi bi-shield-check me-2"></i>Korporativ Darajadagi Xavfsizlik
+            </div>
+            <h1 class="vp-hero-title">
+                Sizning Parollaringiz.<br>
+                <span class="vp-gradient-text">Eng Yuqori Darajada</span> Himoyalangan.
+            </h1>
+            <p class="vp-hero-sub mt-4 mb-5">
+                VaultPass har bir ma'lumotni serverlarimizga yetib kelishidan oldin AES-256 bilan
+                shifrlaydi. Nol-bilim arxitekturasi faqat <em>siz</em> seyfingizni o'qiy olishingizni
+                ta'minlaydi.
+            </p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap vp-hero-cta">
+                <a href="/login" class="btn vp-btn-primary btn-lg px-5">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Tizimga Kirish
+                </a>
+                <a href="/forgot-password" class="btn vp-btn-ghost btn-lg px-5">
+                    <i class="bi bi-key me-2"></i>Parolni Tiklash
+                </a>
+            </div>
+            <p class="vp-trusted mt-5">
+                <i class="bi bi-people me-1"></i>
+                Ishonishadi&nbsp;<strong>12,000+</strong>&nbsp;ta xavfsizlik mutaxassislari tomonidan
+            </p>
+        </div>
+    </section>
+
+    <!-- Xususiyatlar -->
+    <section class="vp-features py-6">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="vp-trusted mb-2">Nima uchun VaultPass?</p>
+                <h2 class="vp-section-title">Sizga Kerak Bo'lgan Hamma Narsa.</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="vp-card h-100">
+                        <div class="vp-card-icon"><i class="bi bi-lock-fill"></i></div>
+                        <h5 class="mt-3 mb-2">Uchidan-Uchiga Shifrlash</h5>
+                        <p class="vp-card-text">
+                            PBKDF2 kalit chiqarish bilan AES-256 shifrlash.
+                            Asosiy parolingiz qurilmangizdan hech qachon chiqmaydi.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="vp-card h-100">
+                        <div class="vp-card-icon"><i class="bi bi-arrow-repeat"></i></div>
+                        <h5 class="mt-3 mb-2">Import va Eksport</h5>
+                        <p class="vp-card-text">
+                            Shifrlangan zaxira tizimi orqali har qanday parol menejeridan
+                            ko'chiring. Ma'lumotlaringiz, sizning usulda.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="vp-card h-100">
+                        <div class="vp-card-icon"><i class="bi bi-people-fill"></i></div>
+                        <h5 class="mt-3 mb-2">Jamoa Seyflari</h5>
+                        <p class="vp-card-text">
+                            Ma'lumotlarni jamoangiz bilan xavfsiz ulashing.
+                            Har bir yozuv uchun rol asosida kirish nazorati.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="vp-card h-100">
+                        <div class="vp-card-icon"><i class="bi bi-speedometer2"></i></div>
+                        <h5 class="mt-3 mb-2">Tezkor Avtoto'ldirish</h5>
+                        <p class="vp-card-text">
+                            Brauzer kengaytmasi bir lahzada ma'lumotlarni to'ldiradi.
+                            Nusxa-joylash endi kerak emas.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="vp-card h-100">
+                        <div class="vp-card-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                        <h5 class="mt-3 mb-2">Xavfsizlik Auditi</h5>
+                        <p class="vp-card-text">
+                            Zaif, takrorlangan yoki buzilgan parollarni avtomatik aniqlab,
+                            amaliy tavsiyalar bering.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="vp-card h-100">
+                        <div class="vp-card-icon"><i class="bi bi-phone-fill"></i></div>
+                        <h5 class="mt-3 mb-2">Ko'p Qurilmali Sinxronlash</h5>
+                        <p class="vp-card-text">
+                            Istalgan qurilmadan seyfingizga kiring. Kompyuter,
+                            telefon va veb orqali shifrlangan sinxronlash.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="vp-cta py-6">
+        <div class="container text-center">
+            <h2 class="vp-section-title mb-3">Raqamli Hayotingizni Himoya Qilishga Tayyormisiz?</h2>
+            <p class="vp-hero-sub mb-5">Korporativ darajadagi xavfsizlik. Hech qanday murosalar yo'q.</p>
+            <a href="/login" class="btn vp-btn-primary btn-lg px-5">
+                <i class="bi bi-shield-lock me-2"></i>Seyfga Kirish
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="vp-footer py-4">
+        <div class="container text-center">
+            <span class="text-muted small">
+                &copy; 2024 VaultPass &mdash;
+                <i class="bi bi-shield-lock-fill" style="color:#4f8ef7;"></i>
+                <em>Sizning sirlaringiz, sizning nazoratda.</em>
+            </span>
+            <br>
+            <span class="small">
+                Powered by <a href="https://t.me/JavaSecuz" target="_blank" rel="noopener">JavaSec</a>
+            </span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

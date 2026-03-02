@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Bosh sahifa — Legacy Access Portal{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>Xush kelibsiz</h1>
+    <p style="color:#888; line-height:1.7; margin-bottom:24px;">
+        Legacy Access Portal — 2019-yilda ishga tushirilgan ichki arxiv tizimi.
+        Ushbu portal faqat ro'yxatdan o'tgan foydalanuvchilar uchun mo'ljallangan.
+        Tizimga kirish uchun avval hisobingizga kiring yoki ro'yxatdan o'ting.
+    </p>
+    <div style="display:flex; gap:14px;">
+        <a href="{{ url_for('login') }}" class="btn" style="text-decoration:none;">Kirish</a>
+        <a href="{{ url_for('register') }}" class="btn" style="background:#222; color:#00ff88; border:1px solid #333; text-decoration:none;">Ro'yxatdan o'tish</a>
+    </div>
+</div>
+<div style="margin-top:24px; color:#333; font-size:0.8rem;">
+    Tizim versiyasi: v1.4.2-legacy &nbsp;|&nbsp; So'nggi yangilanish: 2019-11-03
+</div>
+{% endblock %}

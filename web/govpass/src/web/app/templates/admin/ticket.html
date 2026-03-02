@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Application {{ application.ref_number }}</title>
+  <style>
+    body { font-family: sans-serif; padding: 1em; font-size: 13px; }
+    dt { font-weight: bold; margin-top: 0.5em; }
+  </style>
+</head>
+<body>
+  <h3>Application Detail</h3>
+  <dl>
+    <dt>Reference</dt><dd><code>{{ application.ref_number }}</code></dd>
+    <dt>Applicant</dt><dd>{{ application.applicant_name }}</dd>
+    <dt>Type</dt><dd>{{ application.app_type }}</dd>
+    <dt>Status</dt><dd>{{ application.status }}</dd>
+    <dt>Submitted</dt><dd>{{ application.created_at.strftime('%Y-%m-%d %H:%M') }}</dd>
+  </dl>
+</body>
+</html>

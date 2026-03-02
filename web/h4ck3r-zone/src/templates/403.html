@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}403 — Access Denied{% endblock %}
+
+{% block extra_head %}
+<style>
+    .error-page {
+        min-height     : 70vh;
+        display        : flex;
+        align-items    : center;
+        justify-content: center;
+        text-align     : center;
+        padding        : 2rem;
+    }
+
+    .error-code {
+        font-family  : 'Orbitron', monospace;
+        font-size    : clamp(5rem, 18vw, 10rem);
+        font-weight  : 900;
+        color        : var(--red);
+        text-shadow  : 0 0 40px var(--red-glow);
+        line-height  : 1;
+        margin-bottom: 1rem;
+        animation    : flicker 3.5s infinite;
+    }
+
+    .error-title {
+        font-family  : 'Orbitron', monospace;
+        font-size    : 1.4rem;
+        font-weight  : 700;
+        color        : #fff;
+        margin-bottom: 0.8rem;
+    }
+
+    .error-sub {
+        color        : var(--text-dim);
+        font-size    : 0.82rem;
+        line-height  : 1.9;
+        margin-bottom: 2.5rem;
+        letter-spacing: 0.06em;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="error-page">
+    <div>
+        <div class="error-code">403</div>
+        <h1 class="error-title">ACCESS DENIED</h1>
+        <p class="error-sub">
+            You are not authorized to access this resource.<br>
+            This incident has been logged.
+        </p>
+        <a href="/login" class="btn">&gt;_ Return to Login</a>
+    </div>
+</div>
+{% endblock %}

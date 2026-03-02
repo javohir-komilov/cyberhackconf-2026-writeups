@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}GovPass — Welcome{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Electronic Government Services Portal</h1>
+  <p class="subtitle">Apply for passports, visas, and work permits online — securely and efficiently.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="{{ url_for('portal.apply') }}">Apply Now</a>
+    <a class="btn btn-secondary" href="{{ url_for('auth.login') }}">Sign In</a>
+  </div>
+</section>
+
+<section class="services">
+  <div class="service-card">
+    <h3>🛂 Passport</h3>
+    <p>New issue, renewal, or replacement for lost documents.</p>
+  </div>
+  <div class="service-card">
+    <h3>✈️ Visa</h3>
+    <p>Entry visa applications for foreign nationals.</p>
+  </div>
+  <div class="service-card">
+    <h3>🔖 Work Permit</h3>
+    <p>Employment authorisation for non-residents.</p>
+  </div>
+</section>
+{% endblock %}

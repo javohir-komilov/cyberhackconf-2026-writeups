@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Ichki tizim — Legacy Access Portal{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>Ichki diagnostika tizimi</h1>
+    <p style="color:#555; font-size:0.85rem; margin-bottom:20px;">
+        Debug rejimi faol. Secrets jadvalidagi ma'lumotlarni qidiring.
+    </p>
+
+    <form method="GET">
+        <input type="hidden" name="debug" value="true">
+        <label>Qidirish (name maydoni bo'yicha)</label>
+        <input type="text" name="q" value="{{ q }}" placeholder="masalan: archive_token">
+        <button type="submit" class="btn">Qidirish</button>
+    </form>
+
+    {% if sql_error %}
+    <div style="margin-top:20px;">
+        <div style="color:#ff6666; font-size:0.8rem; margin-bottom:6px;">SQL xatoligi:</div>
+        <pre style="color:#ff6666; border-color:#550000;">{{ sql_error }}</pre>
+    </div>
+    {% endif %}
+
+    {% if result is not none %}
+    <div style="margin-top:20px;">
+        <div style="color:#888; font-size:0.8rem; margin-bottom:8px;">
+            Natijalar ({{ result|length }} ta yozuv):
+        </div>
+        {% if result %}
+            {% for row in result %}
+            <pre>{{ dict(row) }}</pre>
+            {% endfor %}
+        {% else %}
+            <div style="color:#444;">Hech narsa topilmadi.</div>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

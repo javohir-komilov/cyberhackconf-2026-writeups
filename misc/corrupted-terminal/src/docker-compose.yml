@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  corrupted-terminal:
+    build: .
+    ports:
+      - "7000:7000"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true

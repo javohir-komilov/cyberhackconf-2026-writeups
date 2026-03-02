@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}New Application{% endblock %}
+{% block content %}
+<div class="form-container">
+  <h2>New Application</h2>
+  <form method="POST" action="{{ url_for('portal.apply') }}">
+    <div class="form-group">
+      <label>Application Type</label>
+      <select name="app_type">
+        <option value="passport">Passport</option>
+        <option value="visa">Visa</option>
+        <option value="permit">Work Permit</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="applicant_name">Full Name (as in ID)</label>
+      <input type="text" id="applicant_name" name="applicant_name" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Application</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,6 @@
+task nomi: Signal in Headers
+MISC: easy
+flag: CHC{misc_chain_headers_hex_rot13_reverse1337}
+zip ni ochas go run main.go sayt yoqiladi 
+description: Bu vazifa sahifaning manba kodida "sir"ni o'z ichiga olmaydi. Maslahatlar odamlar odatda ko'rmaydigan joylarda yashiringan: robots.txt, statik fayllar va HTTP sarlavhalari. Yashirin yo'lni toping, kreditlarni to'plang va bayroqni oling.
+qo'shimcha ma'lumot: robots.txt

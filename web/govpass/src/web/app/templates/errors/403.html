@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Access Denied{% endblock %}
+{% block content %}
+<div style="text-align:center;padding:4em">
+  <h2>403 — Access Denied</h2>
+  <p>You do not have the required permissions to view this page.</p>
+  <a class="btn btn-secondary" href="{{ url_for('portal.dashboard') }}">Go Back</a>
+</div>
+{% endblock %}

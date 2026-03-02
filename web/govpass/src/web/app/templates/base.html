@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}GovPass Portal{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🏛️</span>
+        <span class="logo-text">GovPass<span class="logo-sub">e-Services</span></span>
+      </div>
+      <nav>
+        {% if session.get('username') %}
+          <span class="nav-user">{{ session.username }}
+            <span class="badge badge-{{ session.role }}">{{ session.role }}</span>
+          </span>
+          {% if session.role == 'admin' %}
+            <a href="{{ url_for('admin.dashboard') }}">Admin Panel</a>
+          {% else %}
+            <a href="{{ url_for('portal.dashboard') }}">My Applications</a>
+          {% endif %}
+          {% if session.role in ('researcher', 'admin') %}
+            <a href="{{ url_for('portal.report') }}">Submit Report</a>
+          {% endif %}
+          <a href="{{ url_for('auth.logout') }}">Logout</a>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}">Login</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for cat, msg in messages %}
+        <div class="alert alert-{{ cat }}">{{ msg }}</div>
+      {% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-logo">🏛️ GovPass e-Services</span>
+        <span class="footer-copy">© 2024 Republic of GovPass &mdash; Ministry of Internal Affairs · e-Services Division</span>
+      </div>
+      <div class="footer-right">
+        <span class="footer-powered">Powered by <a href="https://t.me/JavaSecuz" target="_blank" rel="noopener">Javasec</a></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

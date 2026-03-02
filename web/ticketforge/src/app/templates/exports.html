@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Exports · TicketForge{% endblock %}
+{% block content %}
+<section class="grid gap-6 lg:grid-cols-2">
+  <article class="rounded-2xl border border-cyan-300/20 bg-slate-900/60 p-6">
+    <h1 class="font-display text-2xl font-bold">Export Artifacts</h1>
+    <p class="mt-2 text-sm text-slate-300">Download generated archives and files from worker jobs.</p>
+
+    <div class="mt-4 space-y-2 text-sm">
+      {% for file in files %}
+        <a href="/exports/{{ file|urlencode }}" class="block rounded-lg border border-cyan-300/25 bg-slate-950/65 px-3 py-2 text-cyan-100 hover:border-cyan-200/60">{{ file }}</a>
+      {% else %}
+        <p class="text-slate-400">No export files yet.</p>
+      {% endfor %}
+    </div>
+  </article>
+
+  <article class="rounded-2xl border border-cyan-300/20 bg-slate-900/60 p-6">
+    <h2 class="font-display text-2xl font-bold">Recent Jobs</h2>
+    <div class="mt-4 space-y-2 text-xs text-slate-300">
+      {% for job in jobs %}
+        <div class="rounded-lg border border-slate-700/60 bg-slate-950/55 px-3 py-2">
+          <p>#{{ job.id }} · {{ job.status }}</p>
+          <p class="text-slate-400">queued {{ job.created_at }}{% if job.finished_at %} · finished {{ job.finished_at }}{% endif %}</p>
+          {% if job.output_file %}<p class="text-cyan-200">output: {{ job.output_file }}</p>{% endif %}
+        </div>
+      {% else %}
+        <p class="text-slate-400">No jobs recorded.</p>
+      {% endfor %}
+    </div>
+  </article>
+</section>
+{% endblock %}

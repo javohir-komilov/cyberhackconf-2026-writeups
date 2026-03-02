@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: vaultpass_db
+    environment:
+      POSTGRES_DB: vaultpass
+      POSTGRES_USER: vaultpass_user
+      POSTGRES_PASSWORD: vaultpass_db_pass_2024
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./web.ini:/web.ini:ro
+    networks:
+      - vaultpass_net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vaultpass_user -d vaultpass"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: ./app
+    container_name: vaultpass_app
+    ports:
+      - "8888:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/vaultpass
+      SPRING_DATASOURCE_USERNAME: vaultpass_user
+      SPRING_DATASOURCE_PASSWORD: vaultpass_db_pass_2024
+    volumes:
+      - ./web.ini:/web.ini:ro
+      - ./1e7e88d3a5c27aca348a7cd8025355a6.txt:/1e7e88d3a5c27aca348a7cd8025355a6.txt:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - vaultpass_net
+    restart: unless-stopped
+
+networks:
+  vaultpass_net:
+    driver: bridge

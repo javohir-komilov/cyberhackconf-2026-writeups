@@ -1,0 +1,16 @@
+[internal note]
+
+Things to finish before release:
+
+- remove /note.txt (debug leftover)
+- fix "But Why?" registration bug
+- ask Turan to stop using his dev account in production...
+  he still uses the same username as everywhere 🙄
+
+Password policy reminder:
+dev passwords must include special chars (!,@,#)
+
+Example (DO NOT USE IN PROD):
+<username> + !@#
+
+— admin

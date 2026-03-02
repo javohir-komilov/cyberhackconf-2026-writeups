@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}TicketForge{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["Space Grotesk", "ui-sans-serif", "system-ui"],
+            body: ["IBM Plex Sans", "ui-sans-serif", "system-ui"]
+          },
+          colors: {
+            forge: {
+              900: "#040B1A",
+              800: "#081328",
+              700: "#10284A",
+              400: "#5FD7FF"
+            }
+          },
+          boxShadow: {
+            neon: "0 0 0 1px rgba(95,215,255,.4), 0 20px 50px rgba(0,0,0,.45)"
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-forge-900 font-body text-slate-100">
+  <div class="fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -left-20 top-20 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl"></div>
+    <div class="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-700/30 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-sky-400/10 blur-3xl"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.05)_1px,transparent_0)] bg-[size:22px_22px]"></div>
+  </div>
+
+  <header class="border-b border-cyan-300/20 bg-forge-800/75 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+      <a href="/" class="font-display text-xl font-bold tracking-wide text-cyan-200">TicketForge</a>
+      <nav class="flex items-center gap-4 text-sm text-slate-300">
+        <a class="hover:text-cyan-200" href="/">Dashboard</a>
+        <a class="hover:text-cyan-200" href="/reports">Reports</a>
+        <a class="hover:text-cyan-200" href="/exports">Exports</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-6xl px-5 py-8">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="mb-6 space-y-3">
+          {% for category, message in messages %}
+            <div class="rounded-xl border px-4 py-3 text-sm shadow-neon {% if category == 'success' %}border-emerald-300/40 bg-emerald-500/20 text-emerald-100{% else %}border-rose-300/40 bg-rose-500/20 text-rose-100{% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

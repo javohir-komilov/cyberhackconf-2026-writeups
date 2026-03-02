@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Submit Vulnerability Report{% endblock %}
+{% block content %}
+<div class="form-container">
+  <h2>Responsible Disclosure Report</h2>
+  <p class="small">
+    Reports are reviewed by our security team. Please include a working proof-of-concept URL
+    so we can reproduce the issue in our sandboxed review environment.
+  </p>
+  <form method="POST" action="{{ url_for('portal.report') }}">
+    <div class="form-group">
+      <label for="title">Vulnerability Title</label>
+      <input type="text" id="title" name="title" required placeholder="e.g. Reflected XSS in search parameter">
+    </div>
+    <div class="form-group">
+      <label for="severity">Severity</label>
+      <select id="severity" name="severity">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+        <option value="critical">Critical</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="6" required
+        placeholder="Steps to reproduce, impact, affected component..."></textarea>
+    </div>
+    <div class="form-group">
+      <label for="poc_url">Proof-of-Concept URL</label>
+      <input type="url" id="poc_url" name="poc_url" required
+        placeholder="https://your-server.example.com/poc">
+      <span class="hint">Our review bot will visit this URL in a sandboxed browser session.</span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Report</button>
+  </form>
+</div>
+{% endblock %}

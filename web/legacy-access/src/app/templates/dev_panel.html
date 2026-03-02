@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Dev Panel — Legacy Access Portal{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>Ishlab chiquvchi paneli</h1>
+    <div class="info">
+        Autentifikatsiya muvaffaqiyatli: X-DEV-KEY qabul qilindi.
+    </div>
+    <p style="color:#888; margin-bottom:22px; line-height:1.7;">
+        Xush kelibsiz, ishlab chiquvchi. Ushbu panel ichki diagnostika uchun mo'ljallangan.
+        Tizimning joriy holati va debug vositalariga quyida kirishingiz mumkin.
+    </p>
+
+    <h2 style="font-size:1rem; margin-bottom:12px; color:#555;">Mavjud resurslar</h2>
+    <ul style="color:#888; list-style:none; padding:0;">
+        <li style="padding:8px 0; border-bottom:1px solid #1a1a1a;">
+            📄 <a href="/static/dev.js">Ishlab chiquvchi skripti: /static/dev.js</a>
+            <span style="color:#444; font-size:0.8rem; margin-left:8px;">— diagnostika va endpoint ma'lumotlari</span>
+        </li>
+        <li style="padding:8px 0;">
+            📁 Arxiv tizimi — token orqali kirish mumkin
+        </li>
+    </ul>
+</div>
+<div style="margin-top:16px; color:#2a2a2a; font-size:0.75rem;">
+    OGOHLANTIRISH: Ushbu panel noto'g'ri qo'llanilishi tizimga zarar yetkazishi mumkin.
+</div>
+{% endblock %}

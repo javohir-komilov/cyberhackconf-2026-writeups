@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+{% block title %}H4CK3R_Z0N3 — Dashboard{% endblock %}
+
+{% block extra_head %}
+<style>
+    /* ── Dashboard Layout ──────────────────────── */
+    .dash-wrap {
+        max-width: 1200px;
+        margin   : 0 auto;
+        padding  : 0 2rem 4rem;
+    }
+
+    /* Header row */
+    .dash-header {
+        display        : flex;
+        align-items    : center;
+        justify-content: space-between;
+        padding-bottom : 2rem;
+        margin-bottom  : 2.5rem;
+        border-bottom  : 1px solid var(--border-dim);
+    }
+
+    .dash-title {
+        font-family  : 'Orbitron', monospace;
+        font-size    : 1.6rem;
+        font-weight  : 700;
+        color        : #fff;
+        margin-bottom: 0.3rem;
+    }
+
+    .dash-subtitle { color: var(--text-dim); font-size: 0.78rem; letter-spacing: 0.08em; }
+
+    .dash-user-name {
+        font-family   : 'Orbitron', monospace;
+        font-size     : 0.9rem;
+        color         : var(--red);
+        text-align    : right;
+        margin-bottom : 0.3rem;
+    }
+
+    .dash-user-role {
+        font-size     : 0.65rem;
+        color         : var(--text-dim);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        text-align    : right;
+    }
+
+    .dash-logout {
+        display       : block;
+        text-align    : right;
+        margin-top    : 0.5rem;
+        font-size     : 0.68rem;
+        color         : var(--text-dim);
+        text-decoration: none;
+        letter-spacing: 0.08em;
+        transition    : color 0.2s;
+    }
+
+    .dash-logout:hover { color: var(--red); }
+
+    /* Stats row */
+    .dash-stats {
+        display              : grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap                  : 1.4rem;
+        margin-bottom        : 2.5rem;
+    }
+
+    .ds-card {
+        background: var(--bg-card);
+        border    : 1px solid var(--border-dim);
+        padding   : 1.4rem 1.6rem;
+        position  : relative;
+        overflow  : hidden;
+        transition: border-color 0.3s;
+    }
+
+    .ds-card::after {
+        content         : '';
+        position        : absolute;
+        bottom          : 0;
+        left            : 0;
+        width           : 100%;
+        height          : 2px;
+        background      : var(--red);
+        transform       : scaleX(0);
+        transform-origin: left;
+        transition      : transform 0.3s ease;
+    }
+
+    .ds-card:hover         { border-color: var(--border); }
+    .ds-card:hover::after  { transform: scaleX(1); }
+
+    .ds-label { font-size: 0.62rem; color: var(--text-dim); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.8rem; }
+    .ds-value { font-family: 'Orbitron', monospace; font-size: 1.7rem; font-weight: 700; color: var(--red); text-shadow: 0 0 12px var(--red-glow); }
+    .ds-value.ok { color: #28c840; text-shadow: 0 0 12px rgba(40,200,64,0.35); font-size: 1rem; }
+
+    /* Panel grid */
+    .dash-panels {
+        display              : grid;
+        grid-template-columns: 1fr 1fr;
+        gap                  : 1.5rem;
+    }
+
+    .panel {
+        background: rgba(0, 0, 0, 0.4);
+        border    : 1px solid var(--border-dim);
+    }
+
+    .panel-head {
+        display        : flex;
+        align-items    : center;
+        justify-content: space-between;
+        padding        : 0.9rem 1.4rem;
+        border-bottom  : 1px solid var(--border-dim);
+        background     : rgba(255, 0, 51, 0.04);
+    }
+
+    .panel-title { font-family: 'Orbitron', monospace; font-size: 0.7rem; color: var(--red); letter-spacing: 0.12em; }
+    .panel-badge { font-size: 0.62rem; color: var(--text-dim); letter-spacing: 0.1em; }
+
+    .panel-body { padding: 1.4rem; }
+
+    /* Log rows */
+    .log-row {
+        display      : flex;
+        gap          : 1rem;
+        align-items  : baseline;
+        padding      : 0.42rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.03);
+        font-size    : 0.75rem;
+    }
+
+    .log-row:last-child { border-bottom: none; }
+
+    .log-time   { color: var(--text-dim); flex-shrink: 0; font-size: 0.68rem; }
+    .log-event  { color: var(--text); flex: 1; }
+    .log-ok     { color: #28c840; flex-shrink: 0; }
+    .log-warn   { color: #ffcc00; flex-shrink: 0; }
+    .log-err    { color: var(--red); flex-shrink: 0; }
+
+    /* Quick-access panel */
+    .panel-desc {
+        color        : var(--text-dim);
+        font-size    : 0.8rem;
+        line-height  : 1.9;
+        margin-bottom: 1.6rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dash-wrap">
+
+    <!-- Header -->
+    <div class="dash-header">
+        <div>
+            <h1 class="dash-title">ADMIN DASHBOARD</h1>
+            <p class="dash-subtitle">&gt;_ System overview and control center</p>
+        </div>
+        <div>
+            <div class="dash-user-name">{{ username }}</div>
+            <div class="dash-user-role">Administrator</div>
+            <a class="dash-logout" href="/logout">&gt; Logout</a>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="dash-stats">
+        <div class="ds-card">
+            <div class="ds-label">Active Users</div>
+            <div class="ds-value">2</div>
+        </div>
+        <div class="ds-card">
+            <div class="ds-label">Threats Detected</div>
+            <div class="ds-value">47</div>
+        </div>
+        <div class="ds-card">
+            <div class="ds-label">Reports Generated</div>
+            <div class="ds-value">128</div>
+        </div>
+        <div class="ds-card">
+            <div class="ds-label">System Status</div>
+            <div class="ds-value ok">&#x2B24; ONLINE</div>
+        </div>
+    </div>
+
+    <!-- Panels -->
+    <div class="dash-panels">
+
+        <div class="panel">
+            <div class="panel-head">
+                <span class="panel-title">Activity Log</span>
+                <span class="panel-badge">LIVE</span>
+            </div>
+            <div class="panel-body">
+                <div class="log-row"><span class="log-time">08:42:11</span><span class="log-event">Admin login successful</span><span class="log-ok">[OK]</span></div>
+                <div class="log-row"><span class="log-time">08:41:03</span><span class="log-event">Failed login attempts ×3</span><span class="log-err">[FAIL]</span></div>
+                <div class="log-row"><span class="log-time">08:35:50</span><span class="log-event">Database query executed</span><span class="log-ok">[OK]</span></div>
+                <div class="log-row"><span class="log-time">08:30:12</span><span class="log-event">Security report generated</span><span class="log-ok">[OK]</span></div>
+                <div class="log-row"><span class="log-time">08:22:05</span><span class="log-event">Unknown probe detected</span><span class="log-warn">[WARN]</span></div>
+                <div class="log-row"><span class="log-time">08:15:00</span><span class="log-event">System boot complete</span><span class="log-ok">[OK]</span></div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-head">
+                <span class="panel-title">Quick Access</span>
+            </div>
+            <div class="panel-body">
+                <p class="panel-desc">
+                    Use the Report Engine to generate dynamic security reports.
+                    The Jinja2 template engine supports advanced query expressions
+                    for flexible, real-time output formatting.
+                </p>
+                <a href="/dashboard/report" class="btn">&gt;_ Open Report Engine</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

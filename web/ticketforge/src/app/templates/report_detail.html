@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Report {{ report.id }} · TicketForge{% endblock %}
+{% block content %}
+<section class="grid gap-6 xl:grid-cols-[1.2fr_1fr]">
+  <div class="space-y-6">
+    <header class="rounded-2xl border border-cyan-300/20 bg-slate-900/60 p-6">
+      <h1 class="font-display text-3xl font-bold">{{ report.name }}</h1>
+      <p class="mt-2 text-sm text-slate-300">Report ID {{ report.id }} · Created {{ report.created_at }}</p>
+    </header>
+
+    <article class="rounded-2xl border border-cyan-300/20 bg-slate-900/55 p-6">
+      <h2 class="font-display text-xl font-semibold">Template</h2>
+
+      <form method="get" action="/report/{{ report.id }}" class="mt-4 flex gap-3">
+        <input
+          type="text"
+          name="key"
+          placeholder="report_api_key"
+          value="{{ key }}"
+          class="w-full rounded-xl border border-cyan-300/30 bg-slate-950/70 px-4 py-2 text-sm text-slate-100 placeholder:text-slate-400 focus:border-cyan-200 focus:outline-none"
+        />
+        <button class="rounded-xl border border-cyan-300/50 bg-cyan-400/15 px-4 py-2 text-sm font-semibold text-cyan-100 hover:bg-cyan-400/25">Load</button>
+      </form>
+
+      <form method="post" action="/report/{{ report.id }}/template?key={{ key|urlencode }}" class="mt-4 space-y-3">
+        <textarea
+          name="body"
+          rows="18"
+          {% if not can_manage %}disabled{% endif %}
+          class="w-full rounded-xl border border-cyan-300/25 bg-slate-950/80 px-4 py-3 text-sm text-slate-100 focus:border-cyan-200 focus:outline-none disabled:cursor-not-allowed disabled:opacity-60"
+        >{{ report.body }}</textarea>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <button {% if not can_manage %}disabled{% endif %} class="rounded-xl border border-emerald-300/40 bg-emerald-500/15 px-4 py-2 text-sm font-semibold text-emerald-100 hover:bg-emerald-500/25 disabled:cursor-not-allowed disabled:opacity-50">Save Template</button>
+          <a
+            href="/report/{{ report.id }}/preview?key={{ key|urlencode }}"
+            target="_blank"
+            class="rounded-xl border border-cyan-300/40 bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100 hover:bg-cyan-500/20"
+          >Open Preview</a>
+        </div>
+      </form>
+
+      {% if not can_manage %}
+        <p class="mt-3 text-xs text-amber-200">Read-only mode: provide a valid API key to edit or preview.</p>
+      {% endif %}
+    </article>
+  </div>
+
+  <aside class="space-y-6">
+    <article class="rounded-2xl border border-cyan-300/20 bg-slate-900/55 p-6">
+      <h2 class="font-display text-lg font-semibold">Preview</h2>
+      <p class="mt-2 text-sm text-slate-300">Use the preview button after loading your API key to validate layout and metrics rendering.</p>
+    </article>
+
+    <article class="rounded-2xl border border-cyan-300/20 bg-slate-900/55 p-6">
+      <h2 class="font-display text-lg font-semibold">Next Step</h2>
+      <p class="mt-2 text-sm text-slate-300">After validating this report, manage export profile settings:</p>
+      <a href="/profile{% if key %}?key={{ key|urlencode }}{% endif %}" class="mt-3 inline-block rounded-xl border border-cyan-300/40 bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100 hover:bg-cyan-500/20">Open Export Profile</a>
+    </article>
+  </aside>
+</section>
+{% endblock %}

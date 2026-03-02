@@ -1,0 +1,12 @@
+services:
+  autogen-ctf:
+    build:
+      context: .
+      args:
+        FLAG: ${FLAG:-flag_not_set}
+    container_name: agentpwn-ctf
+    ports:
+      - "8081:8081"
+    environment:
+      - OPENAI_API_KEY=sk-fake-not-needed-for-this-challenge
+    restart: unless-stopped

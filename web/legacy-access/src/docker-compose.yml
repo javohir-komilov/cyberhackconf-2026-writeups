@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLAG=CHC{l3g4cy_4cc3ss_staticdeployment}
+    restart: unless-stopped

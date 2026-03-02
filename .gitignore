@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+# Large binary files — store separately (too large for GitHub)
+*.pcap
+*.cap
+*.gz
+*.cpio.gz
+*.7z
+*.rar

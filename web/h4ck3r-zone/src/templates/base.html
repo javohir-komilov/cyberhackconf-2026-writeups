@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}H4CK3R_Z0N3{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ── Variables ─────────────────────────────── */
+        :root {
+            --red        : #ff0033;
+            --red-dim    : #cc0022;
+            --red-glow   : rgba(255, 0, 51, 0.35);
+            --bg         : #000000;
+            --bg-card    : rgba(255, 0, 51, 0.03);
+            --border     : rgba(255, 0, 51, 0.25);
+            --border-dim : rgba(255, 0, 51, 0.12);
+            --text       : #dedede;
+            --text-dim   : #666;
+            --green      : #00ff41;
+            --nav-h      : 60px;
+            --bar-h      : 28px;
+        }
+
+        /* ── Reset ─────────────────────────────────── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ── Body ──────────────────────────────────── */
+        body {
+            background  : var(--bg);
+            color       : var(--text);
+            font-family : 'Share Tech Mono', monospace;
+            min-height  : 100vh;
+            overflow-x  : hidden;
+        }
+
+        /* Scanlines overlay */
+        body::before {
+            content    : '';
+            position   : fixed;
+            inset      : 0;
+            background : repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0,0,0,0.12) 2px,
+                rgba(0,0,0,0.12) 4px
+            );
+            pointer-events : none;
+            z-index        : 9998;
+        }
+
+        /* Grid background */
+        body::after {
+            content         : '';
+            position        : fixed;
+            inset           : 0;
+            background-image:
+                linear-gradient(rgba(255,0,51,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,0,51,0.035) 1px, transparent 1px);
+            background-size : 44px 44px;
+            pointer-events  : none;
+            z-index         : 0;
+        }
+
+        /* ── Status Bar ────────────────────────────── */
+        .status-bar {
+            position        : fixed;
+            top             : 0;
+            left            : 0;
+            width           : 100%;
+            z-index         : 1001;
+            height          : var(--bar-h);
+            background      : rgba(255, 0, 51, 0.07);
+            border-bottom   : 1px solid var(--border-dim);
+            display         : flex;
+            align-items     : center;
+            justify-content : center;
+            gap             : 2rem;
+            font-size       : 0.62rem;
+            letter-spacing  : 0.2em;
+            color           : var(--red);
+            animation       : pulse-text 3s ease-in-out infinite;
+        }
+
+        .status-bar span { color: var(--text-dim); }
+
+        /* ── Navbar ────────────────────────────────── */
+        nav {
+            position       : fixed;
+            top            : var(--bar-h);
+            left           : 0;
+            width          : 100%;
+            z-index        : 1000;
+            height         : var(--nav-h);
+            background     : rgba(0, 0, 0, 0.96);
+            border-bottom  : 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            display        : flex;
+            align-items    : center;
+        }
+
+        .nav-inner {
+            max-width      : 1200px;
+            width          : 100%;
+            margin         : 0 auto;
+            padding        : 0 2rem;
+            display        : flex;
+            align-items    : center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family : 'Orbitron', monospace;
+            font-weight : 900;
+            font-size   : 1.25rem;
+            color       : var(--red);
+            text-decoration: none;
+            letter-spacing : 0.08em;
+            text-shadow : 0 0 18px var(--red-glow), 0 0 36px var(--red-glow);
+            animation   : flicker 5s infinite;
+        }
+
+        .nav-links {
+            display    : flex;
+            gap        : 2.5rem;
+            list-style : none;
+        }
+
+        .nav-links a {
+            color          : var(--text-dim);
+            text-decoration: none;
+            font-size      : 0.75rem;
+            letter-spacing : 0.18em;
+            text-transform : uppercase;
+            transition     : color 0.2s;
+            position       : relative;
+            padding-bottom : 2px;
+        }
+
+        .nav-links a::after {
+            content    : '';
+            position   : absolute;
+            bottom     : -2px;
+            left       : 0;
+            width      : 0;
+            height     : 1px;
+            background : var(--red);
+            box-shadow : 0 0 6px var(--red);
+            transition : width 0.3s ease;
+        }
+
+        .nav-links a:hover         { color: var(--red); }
+        .nav-links a:hover::after  { width: 100%; }
+
+        /* ── Main ──────────────────────────────────── */
+        main {
+            position   : relative;
+            z-index    : 1;
+            padding-top: calc(var(--bar-h) + var(--nav-h) + 2rem);
+        }
+
+        /* ── Container ─────────────────────────────── */
+        .container {
+            max-width: 1200px;
+            margin   : 0 auto;
+            padding  : 0 2rem;
+        }
+
+        /* ── Footer ────────────────────────────────── */
+        footer {
+            position   : relative;
+            z-index    : 1;
+            margin-top : 6rem;
+            border-top : 1px solid var(--border-dim);
+            background : rgba(0, 0, 0, 0.92);
+            padding    : 3.5rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width             : 1200px;
+            margin                : 0 auto;
+            display               : grid;
+            grid-template-columns : 1.6fr 1fr 1fr;
+            gap                   : 3rem;
+            margin-bottom         : 2.5rem;
+        }
+
+        .footer-col h4 {
+            font-family    : 'Orbitron', monospace;
+            font-size      : 0.65rem;
+            color          : var(--red);
+            letter-spacing : 0.25em;
+            text-transform : uppercase;
+            margin-bottom  : 1.2rem;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            display        : block;
+            color          : var(--text-dim);
+            font-size      : 0.78rem;
+            line-height    : 2;
+            text-decoration: none;
+            transition     : color 0.2s;
+        }
+
+        .footer-col a:hover { color: var(--red); }
+
+        .footer-bottom {
+            max-width   : 1200px;
+            margin      : 0 auto;
+            padding-top : 1.5rem;
+            border-top  : 1px solid rgba(255,255,255,0.04);
+            display     : flex;
+            align-items : center;
+            justify-content: space-between;
+            font-size   : 0.7rem;
+            color       : var(--text-dim);
+            letter-spacing: 0.08em;
+        }
+
+        .footer-bottom .accent { color: var(--red); }
+
+        /* ── Shared UI Components ──────────────────── */
+        .btn {
+            display        : inline-flex;
+            align-items    : center;
+            gap            : 0.5rem;
+            padding        : 0.75rem 1.8rem;
+            background     : transparent;
+            border         : 1px solid var(--red);
+            color          : var(--red);
+            font-family    : 'Share Tech Mono', monospace;
+            font-size      : 0.8rem;
+            letter-spacing : 0.15em;
+            text-transform : uppercase;
+            cursor         : pointer;
+            text-decoration: none;
+            transition     : color 0.25s;
+            position       : relative;
+            overflow       : hidden;
+        }
+
+        .btn::before {
+            content    : '';
+            position   : absolute;
+            inset      : 0;
+            background : var(--red);
+            transform  : translateX(-101%);
+            transition : transform 0.3s ease;
+            z-index    : -1;
+        }
+
+        .btn:hover         { color: #000; }
+        .btn:hover::before { transform: translateX(0); }
+
+        .card {
+            background : var(--bg-card);
+            border     : 1px solid var(--border-dim);
+            padding    : 2rem;
+            position   : relative;
+            transition : border-color 0.3s;
+        }
+
+        .card::before {
+            content   : '';
+            position  : absolute;
+            top       : 0;
+            left      : 0;
+            width     : 3px;
+            height    : 100%;
+            background: var(--red);
+            box-shadow: 0 0 10px var(--red);
+        }
+
+        .card:hover { border-color: var(--border); }
+
+        .section-heading {
+            font-family    : 'Orbitron', monospace;
+            font-size      : 1.7rem;
+            font-weight    : 700;
+            color          : #fff;
+            text-align     : center;
+            margin-bottom  : 0.6rem;
+        }
+
+        .section-rule {
+            width      : 56px;
+            height     : 2px;
+            background : var(--red);
+            box-shadow : 0 0 10px var(--red);
+            margin     : 0.8rem auto 3.5rem;
+        }
+
+        /* ── Animations ────────────────────────────── */
+        @keyframes flicker {
+            0%, 93%, 100% { opacity: 1; }
+            94%            { opacity: 0.35; }
+            95%            { opacity: 1; }
+            98%            { opacity: 0.6; }
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.55; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0; }
+        }
+
+        @keyframes glitch {
+            0%   { clip-path: inset(40% 0 61% 0); transform: translate(-3px, 0); }
+            20%  { clip-path: inset(92% 0 1%  0); transform: translate( 3px, 0); }
+            40%  { clip-path: inset(43% 0 1%  0); transform: translate(-2px, 0); }
+            60%  { clip-path: inset(25% 0 58% 0); transform: translate( 2px, 0); }
+            80%  { clip-path: inset(54% 0 7%  0); transform: translate(-2px, 0); }
+            100% { clip-path: inset(58% 0 43% 0); transform: translate( 0,   0); }
+        }
+
+        @keyframes scanDown {
+            from { transform: translateY(-100%); }
+            to   { transform: translateY(100vh); }
+        }
+
+        .cursor::after {
+            content   : '_';
+            color     : var(--red);
+            animation : blink 1s step-end infinite;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <span>[ SYSTEM: </span>ONLINE<span> ]</span>
+        <span>[ THREAT LEVEL: </span>HIGH<span> ]</span>
+        <span>[ TUNNEL: </span>ENCRYPTED<span> ]</span>
+        <span>[ ORIGIN: </span>UNKNOWN<span> ]</span>
+    </div>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">&gt;_ H4CK3R_Z0N3</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/login">[ Login ]</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>&gt;_ About</h4>
+                <p>H4CK3R_Z0N3 is a classified platform for elite security researchers. Unauthorized access is strictly prohibited and all activity is logged.</p>
+            </div>
+            <div class="footer-col">
+                <h4>&gt;_ Navigation</h4>
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/login">Admin Portal</a>
+            </div>
+            <div class="footer-col">
+                <h4>&gt;_ System</h4>
+                <p>Backend  : Flask / Python</p>
+                <p>Database : SQLite3</p>
+                <p>Engine   : Jinja2</p>
+                <p>Version  : 0.1.0-alpha</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span><span class="accent">H4CK3R_Z0N3</span> &copy; 2024 — All rights reserved</span>
+            <span><span class="accent">WARNING:</span> All access attempts are logged</span>
+        </div>
+    </footer>
+
+</body>
+</html>

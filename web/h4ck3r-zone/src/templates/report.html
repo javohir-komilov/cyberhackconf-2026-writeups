@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% block title %}H4CK3R_Z0N3 — Report Engine{% endblock %}
+
+{% block extra_head %}
+<style>
+    /* ── Report Layout ─────────────────────────── */
+    .report-wrap {
+        max-width: 900px;
+        margin   : 0 auto;
+        padding  : 0 2rem 4rem;
+    }
+
+    /* Header */
+    .report-header {
+        padding-bottom: 2rem;
+        margin-bottom : 2.5rem;
+        border-bottom : 1px solid var(--border-dim);
+    }
+
+    .report-title {
+        font-family  : 'Orbitron', monospace;
+        font-size    : 1.6rem;
+        font-weight  : 700;
+        color        : #fff;
+        margin-bottom: 0.4rem;
+    }
+
+    .report-sub { color: var(--text-dim); font-size: 0.78rem; letter-spacing: 0.08em; }
+
+    .back-link {
+        display       : inline-block;
+        font-size     : 0.72rem;
+        color         : var(--text-dim);
+        text-decoration: none;
+        letter-spacing: 0.1em;
+        margin-bottom : 1.6rem;
+        transition    : color 0.2s;
+    }
+
+    .back-link:hover { color: var(--red); }
+
+    /* Form card */
+    .report-form-card {
+        background: var(--bg-card);
+        border    : 1px solid var(--border-dim);
+        padding   : 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-label {
+        display       : block;
+        font-size     : 0.65rem;
+        color         : var(--red);
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        margin-bottom : 0.7rem;
+    }
+
+    .form-label small {
+        color         : var(--text-dim);
+        font-size     : 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: none;
+    }
+
+    .form-textarea {
+        width       : 100%;
+        min-height  : 96px;
+        background  : rgba(0, 0, 0, 0.55);
+        border      : 1px solid var(--border-dim);
+        padding     : 0.9rem 1rem;
+        color       : var(--text);
+        font-family : 'Share Tech Mono', monospace;
+        font-size   : 0.85rem;
+        line-height : 1.7;
+        resize      : vertical;
+        outline     : none;
+        transition  : border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-textarea::placeholder { color: var(--text-dim); }
+    .form-textarea:focus        { border-color: var(--red); box-shadow: 0 0 12px rgba(255,0,51,0.1); }
+
+    .form-hint { margin-top: 0.5rem; font-size: 0.68rem; color: var(--text-dim); }
+
+    .form-actions {
+        display    : flex;
+        align-items: center;
+        gap        : 1.5rem;
+        margin-top : 1.4rem;
+    }
+
+    .form-cancel {
+        font-size     : 0.72rem;
+        color         : var(--text-dim);
+        text-decoration: none;
+        letter-spacing: 0.1em;
+        transition    : color 0.2s;
+    }
+
+    .form-cancel:hover { color: var(--red); }
+
+    /* Examples */
+    .examples {
+        margin-top: 1.4rem;
+        padding   : 1.1rem 1.4rem;
+        border    : 1px dashed var(--border-dim);
+    }
+
+    .examples-label {
+        font-size     : 0.62rem;
+        color         : var(--red);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom : 0.6rem;
+    }
+
+    .ex-tag {
+        display     : inline-block;
+        background  : rgba(255,0,51,0.06);
+        border      : 1px solid var(--border-dim);
+        padding     : 0.18rem 0.6rem;
+        color       : var(--green);
+        font-size   : 0.75rem;
+        margin      : 0.2rem 0.2rem 0 0;
+        cursor      : pointer;
+        transition  : background 0.2s, border-color 0.2s;
+        font-family : 'Share Tech Mono', monospace;
+    }
+
+    .ex-tag:hover { background: rgba(255,0,51,0.12); border-color: var(--border); }
+
+    /* Output card */
+    .output-card {
+        background: rgba(0, 0, 0, 0.7);
+        border    : 1px solid var(--border-dim);
+    }
+
+    .output-head {
+        display      : flex;
+        align-items  : center;
+        gap          : 0.7rem;
+        padding      : 0.8rem 1.4rem;
+        border-bottom: 1px solid var(--border-dim);
+        background   : rgba(255,0,51,0.04);
+        font-size    : 0.65rem;
+        color        : var(--text-dim);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+
+    .output-dot {
+        width        : 7px;
+        height       : 7px;
+        border-radius: 50%;
+        background   : var(--red);
+        box-shadow   : 0 0 6px var(--red);
+        animation    : pulse-text 1.4s ease-in-out infinite;
+    }
+
+    .output-body {
+        padding       : 1.4rem;
+        font-size     : 0.85rem;
+        color         : var(--green);
+        line-height   : 1.8;
+        min-height    : 64px;
+        white-space   : pre-wrap;
+        word-break    : break-all;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="report-wrap">
+
+    <!-- Header -->
+    <div class="report-header">
+        <h1 class="report-title">REPORT ENGINE</h1>
+        <p class="report-sub">&gt;_ Admin only</p>
+    </div>
+
+    <a class="back-link" href="/dashboard">&lt;_ Back to Dashboard</a>
+
+    <!-- Form -->
+    <div class="report-form-card">
+        <form method="POST" action="/dashboard/report">
+
+            <label class="form-label" for="query">
+             Template &nbsp;<small></small>
+            </label>
+
+            <textarea
+                class="form-textarea"
+                id="query"
+                name="query"
+                rows="4"
+                placeholder="Enter report template.."
+            >{{ prev_query | e }}</textarea>
+
+            <p class="form-hint">Tip: Use template expressions for dynamic report content.</p>
+
+            <div class="form-actions">
+                <button class="btn" type="submit">&gt;_ Generate Report</button>
+                <a class="form-cancel" href="/dashboard">&gt; Cancel</a>
+            </div>
+        </form>
+
+        <div class="examples">
+            <div class="examples-label">Example Queries</div>
+            <code class="ex-tag">Hello World</code>
+            <code class="ex-tag">{% raw %}{{ 2 + 2 }}{% endraw %}</code>
+            <code class="ex-tag">{% raw %}{{ "ok".upper() }}{% endraw %}</code>
+        </div>
+    </div>
+
+    <!-- Output -->
+    {% if output is not none %}
+    <div class="output-card">
+        <div class="output-head">
+            <span class="output-dot"></span>
+            Report Output &nbsp;//&nbsp; Rendered Result
+        </div>
+        <div class="output-body">{{ output }}</div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

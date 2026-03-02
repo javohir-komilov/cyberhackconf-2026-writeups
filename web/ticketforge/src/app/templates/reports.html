@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Reports · TicketForge{% endblock %}
+{% block content %}
+<section class="space-y-6">
+  <header class="rounded-2xl border border-cyan-300/20 bg-slate-900/60 p-6">
+    <h1 class="font-display text-3xl font-bold">Report Catalog</h1>
+    <p class="mt-2 text-sm text-slate-300">Open a report to preview or edit its template. Management actions require a valid API key.</p>
+  </header>
+
+  <div class="grid gap-4">
+    {% for report in reports %}
+      <a href="/report/{{ report.id }}" class="rounded-2xl border border-cyan-300/20 bg-slate-900/55 p-5 transition hover:border-cyan-200/50 hover:bg-slate-900/80">
+        <h2 class="font-display text-xl font-semibold">{{ report.name }}</h2>
+        <p class="mt-1 text-xs text-slate-400">Report ID: {{ report.id }} · Created {{ report.created_at }}</p>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

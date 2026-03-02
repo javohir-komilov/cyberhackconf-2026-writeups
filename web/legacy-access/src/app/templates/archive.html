@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Arxiv — Legacy Access Portal{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>Arxiv fayl tizimi</h1>
+    <p style="color:#555; font-size:0.85rem; margin-bottom:20px;">
+        Token tasdiqlandi. Arxiv fayllarini ko'rish uchun fayl nomini kiriting.
+    </p>
+
+    <form method="GET">
+        <input type="hidden" name="token" value="{{ request.args.get('token', '') }}">
+        <label>Fayl nomi</label>
+        <input type="text" name="file" value="{{ filename or '' }}" placeholder="masalan: readme.txt">
+        <button type="submit" class="btn">Faylni o'qish</button>
+    </form>
+
+    {% if content is not none %}
+    <div style="margin-top:22px;">
+        <div style="color:#888; font-size:0.8rem; margin-bottom:6px;">
+            Fayl: <code>{{ filename }}</code>
+        </div>
+        <pre>{{ content }}</pre>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

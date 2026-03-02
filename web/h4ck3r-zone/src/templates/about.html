@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% block title %}H4CK3R_Z0N3 — About{% endblock %}
+
+{% block extra_head %}
+<style>
+    /* ── Page Header ───────────────────────────── */
+    .page-header {
+        padding      : 4rem 2rem 3rem;
+        text-align   : center;
+        border-bottom: 1px solid var(--border-dim);
+        margin-bottom: 5rem;
+    }
+
+    .page-eyebrow {
+        font-size     : 0.68rem;
+        color         : var(--red);
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        margin-bottom : 1rem;
+        animation     : pulse-text 2.5s ease-in-out infinite;
+    }
+
+    .page-title {
+        font-family: 'Orbitron', monospace;
+        font-size  : clamp(2rem, 5vw, 3rem);
+        font-weight: 900;
+        color      : #fff;
+    }
+
+    /* ── About Layout ──────────────────────────── */
+    .about-grid {
+        display              : grid;
+        grid-template-columns: 1fr 1fr;
+        gap                  : 5rem;
+        align-items          : start;
+        margin-bottom        : 5rem;
+    }
+
+    .about-text h3 {
+        font-family   : 'Orbitron', monospace;
+        font-size     : 0.85rem;
+        color         : var(--red);
+        letter-spacing: 0.15em;
+        margin-bottom : 1rem;
+    }
+
+    .about-text p {
+        color        : var(--text-dim);
+        font-size    : 0.82rem;
+        line-height  : 2;
+        margin-bottom: 1.4rem;
+    }
+
+    .warn-box {
+        border    : 1px solid var(--red);
+        background: rgba(255, 0, 51, 0.04);
+        padding   : 1.4rem 1.6rem;
+        margin    : 1.8rem 0;
+        position  : relative;
+    }
+
+    .warn-box::before {
+        content      : '[ WARNING ]';
+        position     : absolute;
+        top          : -0.6rem;
+        left         : 1rem;
+        background   : var(--bg);
+        padding      : 0 0.5rem;
+        font-size    : 0.62rem;
+        color        : var(--red);
+        letter-spacing: 0.2em;
+        animation    : pulse-text 2s infinite;
+    }
+
+    .warn-box p {
+        color    : var(--text);
+        font-size: 0.8rem;
+        line-height: 1.9;
+        margin   : 0;
+    }
+
+    /* ── Timeline ──────────────────────────────── */
+    .timeline {
+        border-left: 1px solid var(--border);
+        padding-left: 2rem;
+    }
+
+    .tl-item {
+        position     : relative;
+        margin-bottom: 2.2rem;
+    }
+
+    .tl-item::before {
+        content      : '';
+        position     : absolute;
+        left         : -2.35rem;
+        top          : 0.45rem;
+        width        : 8px;
+        height       : 8px;
+        border-radius: 50%;
+        background   : var(--red);
+        box-shadow   : 0 0 8px var(--red);
+    }
+
+    .tl-date  { font-size: 0.65rem; color: var(--red); letter-spacing: 0.2em; margin-bottom: 0.3rem; }
+    .tl-title { font-family: 'Orbitron', monospace; font-size: 0.78rem; color: #fff; margin-bottom: 0.4rem; }
+    .tl-desc  { color: var(--text-dim); font-size: 0.78rem; line-height: 1.85; }
+
+    /* ── Tech Stack ────────────────────────────── */
+    .tech-section {
+        padding-top: 4rem;
+        border-top : 1px solid var(--border-dim);
+    }
+
+    .tech-grid {
+        display              : grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap                  : 1.2rem;
+    }
+
+    .tech-card {
+        border    : 1px solid var(--border-dim);
+        padding   : 1.4rem;
+        text-align: center;
+        transition: border-color 0.3s, background 0.3s;
+    }
+
+    .tech-card:hover { border-color: var(--border); background: rgba(255,0,51,0.04); }
+
+    .tech-name { font-family: 'Orbitron', monospace; font-size: 0.72rem; color: var(--red); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .tech-desc { font-size: 0.72rem; color: var(--text-dim); line-height: 1.7; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <!-- Header -->
+    <div class="page-header">
+        <p class="page-eyebrow">&gt;&gt; INTEL FILE: DECLASSIFIED &lt;&lt;</p>
+        <h1 class="page-title">ABOUT THE SYSTEM</h1>
+    </div>
+
+    <!-- About + Timeline -->
+    <div class="about-grid">
+
+        <div class="about-text">
+            <h3>&gt;_ Mission Statement</h3>
+            <p>H4CK3R_Z0N3 was established as a closed network for elite security researchers. Our platform hosts sensitive intelligence, vulnerability databases, and classified reports — accessible only to vetted administrators.</p>
+            <p>The system was built with security as the top priority: multi-layered authentication, encrypted communications, and a proprietary Jinja2-powered template engine for dynamic report generation.</p>
+            <p>If you are reading this page, you are <span style="color:var(--red)">not yet authorized</span> to access inner systems. The admin portal lies beyond.</p>
+
+            <div class="warn-box">
+                <p>All unauthorized access attempts are logged, traced, and reported to the appropriate authorities. Penetration testing is strictly prohibited without written authorization.</p>
+            </div>
+
+            <a href="/login" class="btn">&gt;_ Attempt Login</a>
+        </div>
+
+        <div>
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-date">2019 . 03 . 14</div>
+                    <div class="tl-title">System Initialization</div>
+                    <p class="tl-desc">H4CK3R_Z0N3 deployed on hardened servers. Initial security audit passed with minor findings.</p>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-date">2020 . 07 . 22</div>
+                    <div class="tl-title">Database Upgrade</div>
+                    <p class="tl-desc">Migrated to SQLite3. Password storage updated to MD5 hashing.</p>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-date">2021 . 11 . 05</div>
+                    <div class="tl-title">Report Engine v2</div>
+                    <p class="tl-desc">Deployed new dynamic Jinja2 template-based report generation for the admin dashboard.</p>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-date">2024 . 01 . 01</div>
+                    <div class="tl-title">Current State</div>
+                    <p class="tl-desc">System fully operational. All security measures active. Awaiting next audit cycle.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="tech-section">
+        <h2 class="section-heading">Tech Stack</h2>
+        <div class="section-rule"></div>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="tech-name">Flask</div>
+                <p class="tech-desc">Python micro-framework powering the backend</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-name">SQLite3</div>
+                <p class="tech-desc">Lightweight relational DB for user authentication</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-name">Jinja2</div>
+                <p class="tech-desc">Template engine for dynamic report rendering</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-name">MD5</div>
+                <p class="tech-desc">Password hashing algorithm (legacy)</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
