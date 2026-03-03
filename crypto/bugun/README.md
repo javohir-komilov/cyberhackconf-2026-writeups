@@ -42,4 +42,4 @@ v → r  (shift 4)
 
 ## Flag
 
-`CHC{f3vr4lning_0x1rg1_kun1d4}`
+`CHC{f3vr4ln1ng_0x1rg1_kun1d4}`
