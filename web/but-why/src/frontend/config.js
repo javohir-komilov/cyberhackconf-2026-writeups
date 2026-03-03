@@ -1,5 +1,5 @@
 window.CONFIG = {
-  backendUrl: `http://${window.location.hostname}:8000`,
+  backendUrl: `${window.location.origin}`,
   musicPath: "music/theme.mp3",
   reels: [
     "videos/reels/reel1.mp4",

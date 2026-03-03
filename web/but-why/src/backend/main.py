@@ -10,6 +10,7 @@ from app.routes.penguin_routes import router as penguin_router
 from app.routes.user_routes import router as user_router
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import PlainTextResponse
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(
     title="CTF Challenge API",
@@ -36,6 +37,10 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(user_router)
 app.include_router(penguin_router)
+
+
+# ── Serve Frontend ────────────────────────────────────────
+app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
 
 
 # ── Helpers ───────────────────────────────────────────────
