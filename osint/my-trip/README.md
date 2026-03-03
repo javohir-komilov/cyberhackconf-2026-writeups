@@ -13,15 +13,15 @@
 
 **Files:** `src/` (3 images with question hints)
 
-## Solution
+## Solution  
 
 ### Image 1 — Café (`1_cafe.JPG`)
 
 Use **Google Lens** reverse image search on the photo.
 
-The match is a café called **Cavum** in Tashkent.
+The match is a café called **Cavic** in Kokand.
 
-**Answer: `cavic`** *(cafe name in Tashkent)*
+**Answer: `cavic`** *(cafe name in Kokand)*
 
 ---
 
