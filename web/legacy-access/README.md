@@ -10,8 +10,7 @@
 > A legacy internal archive portal from 2019 is still running.
 > The IT department has been planning to shut it down "next quarter" for years.
 > The system is still live — and it still has the old vulnerabilities.
->
-> Login: `student` / `student123`
+
 
 ## Solution
 
