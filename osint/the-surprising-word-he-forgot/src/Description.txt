@@ -1,0 +1,18 @@
+Title: The surprising word he forgot
+Category: OSINT
+Points: 500
+Author: Ocean
+
+Description:
+Sayohatchi bu rasmni olishidan oldin bir shaxarga borgan va u shaxar manashu rasm olingan davlatning janubida joylashgan.
+U shaxarda sayohatchi bir bino tagidagi yozuvni korib juda hayratlanadi.
+
+1) bu qaysi davlat?
+2) janubidagi shaxarni nomi nima?
+3) va uni ajablantirgan yozuv nima edi?
+
+Flag format: CHC{Country_City_Keyword}
+
+Hint 1: Rasmni image search qilib ko'ring, Europe dan qidirganiz yaxshiroq.
+Hint 2: Shaharni topganinggizdan keyin bino atrofini yaxshilab search qiling so`zni topish uchun.
+Hint 3: Keyword ingliz tilida!

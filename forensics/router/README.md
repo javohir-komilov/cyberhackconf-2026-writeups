@@ -12,6 +12,8 @@
 > Quiz-style challenge — 6 questions answered via an interactive server.
 > You are given a router firmware dump to analyze.
 
+**Files:** `router.7z` (firmware dump, ~19MB — excluded from git due to binary size)
+
 ## Questions & Answers
 
 | # | Question | Answer | Points |

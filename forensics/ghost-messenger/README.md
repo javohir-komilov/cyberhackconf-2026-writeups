@@ -38,6 +38,8 @@ Multiple identical Telegram links appear, plus one unique truncated `t.me/user..
 Following the UDP stream reveals the full Telegram channel URL.
 Navigate to the channel to find the flag posted there.
 
+**Note:** The challenge PCAP file (`The Ghost Messenger.pcap`, ~150MB) is too large to include in this repository. Download it from the original CTF platform.
+
 ## Flag
 
 `CHC{0p3n_7h3_534l_r34d_7h3_p47h}`

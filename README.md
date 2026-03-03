@@ -13,11 +13,11 @@ Official writeup repository for **CyberHackConf 2026 CTF** (Feb 28, 2026).
 | Challenge | Points | Flag | Writeup |
 |-----------|--------|------|---------|
 | [Baby Curve](crypto/baby-curve/) | 500 | CHC{...} dynamic | [→](crypto/baby-curve/README.md) |
-| [Bugun](crypto/bugun/) | ? | CHC{...} | [→](crypto/bugun/README.md) |
+| [Bugun](crypto/bugun/) | ? | CHC{f3vr4lning_0x1rg1_kun1d4} | [→](crypto/bugun/README.md) |
 | [Crypto Simple](crypto/crypto-simple/) | ? | CHC{...} | [PDF](crypto/crypto-simple/writeup/crypto.docx) |
 | [Shtaketnik](crypto/shtaketnik/) | ? | CHC{rail_fence_cipher} | [→](crypto/shtaketnik/README.md) |
-| [Silent Transmission](crypto/silent-transmission/) | ? | CHC{...} | [→](crypto/silent-transmission/README.md) |
-| [V3k7or](crypto/v3k7or/) | ? | CHC{...} | [→](crypto/v3k7or/README.md) |
+| [Silent Transmission](crypto/silent-transmission/) | ? | CHC{WEATHER_REPORT_RADIO_SILENCE} | [→](crypto/silent-transmission/README.md) |
+| [V3k7or](crypto/v3k7or/) | ? | CHC{...} dynamic | [→](crypto/v3k7or/README.md) |
 
 ### Forensics
 
@@ -33,7 +33,7 @@ Official writeup repository for **CyberHackConf 2026 CTF** (Feb 28, 2026).
 
 | Challenge | Points | Flag | Writeup |
 |-----------|--------|------|---------|
-| [Aria](misc/aria/) | ? | CHC{...} | [→](misc/aria/README.md) |
+| [Aria](misc/aria/) | ? | CHC{y0u_c4nt_k1ll_wh4t_1s_4lr34dy_br0k3n} | [→](misc/aria/README.md) |
 | [Corrupted Terminal](misc/corrupted-terminal/) | ? | CHC{c0rrupt3d_sh3ll_r3p41r3d} | [→](misc/corrupted-terminal/README.md) |
 | [Evidence](misc/evidence/) | ? | CHC{s3n!n5_!pn9_f4hl1n6-@ni14qndL} | [→](misc/evidence/README.md) |
 | [Hidden Colors](misc/hidden-colors/) | ? | CHC{b4s1c_st3go_m4st3r_2026} | [→](misc/hidden-colors/README.md) |
@@ -53,10 +53,10 @@ Official writeup repository for **CyberHackConf 2026 CTF** (Feb 28, 2026).
 
 | Challenge | Points | Flag | Writeup |
 |-----------|--------|------|---------|
-| [CEO](osint/ceo/) | ? | CHC{...} | [→](osint/ceo/README.md) |
-| [My Trip](osint/my-trip/) | ? | CHC{...} | [→](osint/my-trip/README.md) |
+| [CEO](osint/ceo/) | ? | CHC{maroon_bells} | [→](osint/ceo/README.md) |
+| [My Trip](osint/my-trip/) | ? | CHC{cavic_darkzone_mashinasozlar} | [→](osint/my-trip/README.md) |
 | [Bir O'q, Bir Asr](osint/oneshot-one/) | ? | CHC{FN_Model_1910_19074} | [→](osint/oneshot-one/README.md) |
-| [The Surprising Word He Forgot](osint/the-surprising-word-he-forgot/) | ? | CHC{...} | [→](osint/the-surprising-word-he-forgot/README.md) |
+| [The Surprising Word He Forgot](osint/the-surprising-word-he-forgot/) | ? | CHC{Netherland_TheHague_peace} | [→](osint/the-surprising-word-he-forgot/README.md) |
 
 ### Pwn
 
@@ -73,7 +73,7 @@ Official writeup repository for **CyberHackConf 2026 CTF** (Feb 28, 2026).
 |-----------|--------|------|---------|
 | [Obfuscated BATCH](rev/obfuscated-batch/) | ? | CHC{...} | [PDF](rev/obfuscated-batch/writeup/WriteUp.pdf) |
 | [CrackMe](rev/crackme/) | ? | CHC{x0r_sh1ft_n_sw4p!} | [→](rev/crackme/README.md) |
-| [ProSoft v1.0](rev/prosoft/) | ? | CHC{...} | [→](rev/prosoft/README.md) |
+| [ProSoft v1.0](rev/prosoft/) | ? | CHC{r3v3rs3_m4st3r_p4tch3d_y0u} | [→](rev/prosoft/README.md) |
 | [Revonaldo](rev/revonaldo/) | ? | CHC{...} | [PDF](rev/revonaldo/writeup/WriteUp.pdf) |
 | [VaultCheck](rev/vaultcheck/) | 500 | CHC{v1rtu4l_m4ch1n3_r3v3rs3d} | [→](rev/vaultcheck/README.md) |
 
@@ -86,7 +86,7 @@ Official writeup repository for **CyberHackConf 2026 CTF** (Feb 28, 2026).
 | [GovPass](web/govpass/) | 500 | CHC{fr4m3_c0unt_l34ks_4ll_s3cr3ts} | [→](web/govpass/README.md) |
 | [_H4CK3R_Z0N3](web/h4ck3r-zone/) | ? | CHC{5QL_1nj3ct10n_4nd_5ST1_m4st3r_hacker_2024} | [→](web/h4ck3r-zone/README.md) |
 | [Legacy Access Portal](web/legacy-access/) | ? | CHC{7a14ba!$rni_41_v4zLf&s1_!shl4d1n6} | [→](web/legacy-access/README.md) |
-| [Old But Gold](web/old-but-gold/) | ? | CHC{...} | [→](web/old-but-gold/README.md) |
+| [Old But Gold](web/old-but-gold/) | ? | CHC{old_but_gold_never_dies} | [→](web/old-but-gold/README.md) |
 | [React2Shell](web/react2shell/) | 500 | CHC{r34ct_fl1ght_d3s3r_w4f_byp4ss_1s_4rt} | [→](web/react2shell/README.md) |
 | [TicketForge](web/ticketforge/) | ? | CHC{1_533_1nj3c710n5...1nj3c710n_3v3rywh3r3!} | [→](web/ticketforge/README.md) |
 | [VaultPass](web/vaultpass/) | 500 | CHC{java_d3s3r1al_rce_thr0ugh_aes_k3y_l3ak_via_sqli_f1l3_r3ad} | [→](web/vaultpass/README.md) |
