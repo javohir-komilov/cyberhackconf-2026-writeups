@@ -24,6 +24,10 @@
 **Points:** 500
 **Flag:** `flag{ag3nt_t00ls_ar3_just_ex3c_in_d1sgu1se}`
 
+> **This challenge was built on an undisclosed 0-day vulnerability in `autogenstudio 0.4.2.2`** —
+> the latest pip release at the time of the event (Feb 28, 2026). The RCE vector was not
+> publicly known or CVE-assigned at the time. Found and weaponized by the challenge author.
+
 ---
 
 ## Overview
