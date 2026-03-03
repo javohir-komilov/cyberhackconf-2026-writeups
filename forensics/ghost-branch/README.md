@@ -155,8 +155,6 @@ Flag string (pipe-separated):
 BR-WS23|GBR-7Q2A-91D3|BranchBudget_2025-Final.xlsx|2026-01-14T08:00:23Z
 ```
 
-SHA-256 of the above string → insert into `CHC{...}`
-
 ## Flag
 
 `CHC{BR-WS23_GBR-7Q2A-91D3_BRANCHBUDGET_2025-FINAL.XLSX_2026-01-14T08:00:23Z}`
